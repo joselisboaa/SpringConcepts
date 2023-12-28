@@ -10,10 +10,15 @@ public class PrimeiroController {
 	
 	private InterfaceBean bean;
 	
+	@Autowired
 	public PrimeiroController(InterfaceBean bean) {
 		this.bean = bean;
 		
-		System.out.printf("Primeiro controller injetado: %s", bean);
+		System.out.printf("Primeiro controller injetado: %s ", bean);
+	}
+	
+	public PrimeiroController(String test) {
+		
 	}
 
 	@GetMapping("/helo")
@@ -27,6 +32,4 @@ public class PrimeiroController {
 	public String test() {
 		return "Test bean!!!!";
 	}
-
-	
 }
