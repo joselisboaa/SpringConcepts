@@ -7,10 +7,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.joselisboaa.study.events.User;
+import com.joselisboaa.study.events.UserActivate;
+
 @Controller
 public class PrimeiroController {
 	
 	private InterfaceBean bean;
+	
+	@Autowired
+	private UserActivate userActivate;
+	
+	@Autowired
+	private User user;
 
 	@Autowired
 	public PrimeiroController(InterfaceBean bean) {
@@ -33,5 +42,13 @@ public class PrimeiroController {
 	@ResponseBody
 	public String test() {
 		return "Test bean!!!!";
+	}
+	
+	@GetMapping("/event")
+	@ResponseBody
+	public String testEvent() {
+		userActivate.activate(user);
+		
+		return user.getName();
 	}
 }
